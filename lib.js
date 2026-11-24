@@ -66,9 +66,17 @@ function validateParam(obj, prop, validator, defaultValue) {
             `validator ${validator.name} failed on ${prop} = "${param}"`,
           ],
         },
-        422
+        422,
       )
     }
   }
 }
 exports.validateParam = validateParam
+
+function formatArticleSlug(title) {
+  if (title === null) return ''
+  if (typeof title !== 'string') return ''
+  if (!title.trim()) return ''
+  return title.trim().toLowerCase().replace(/\s+/g, '-')
+}
+exports.formatArticleSlug = formatArticleSlug
